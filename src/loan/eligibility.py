@@ -22,6 +22,10 @@ def evaluate(
     Returns a dict with the average loan amount over the last 12 months and the standard rate.
     See classify_member for the full eligibility logic.
     """
+
+    if history is None:
+        history = []
+
     history.append({"ts": datetime.now(), "income": income, "debt": debt})
     AUDIT_COUNTER[0] = AUDIT_COUNTER[0] + 1
 
