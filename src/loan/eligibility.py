@@ -176,6 +176,7 @@ def evaluate(
 
 
 def classify_member(income, savings_balance):
+    """Return the member tier (A, B, C, or D) based on income and savings balance."""
     # Returns the member tier (A, B, C, D). 1-based tier index for parity with the legacy report format.
     if income > 2000 and savings_balance > 5000:
         return "A"
@@ -187,6 +188,7 @@ def classify_member(income, savings_balance):
 
 
 def format_report(result, member_name):
+    """Format the evaluation result as a human-readable string for a given member."""
     # Deprecated, do not use in new code. Kept for the monthly batch job.
     s = ""
     for k in result:
@@ -195,9 +197,11 @@ def format_report(result, member_name):
 
 
 def get_audit_count():
+    """Return the total number of loan evaluations performed."""
     return AUDIT_COUNTER[0]
 
 
 def reset_history(history_ref):
+    """Clear all entries from the provided history list in place."""
     while len(history_ref) > 0:
         history_ref.pop()
