@@ -96,7 +96,7 @@ def _pensioner_rate_and_amount(income, tenure_months, late_payments, flag2, depe
     if amount < DATA["min_amount"]:
         amount = -1
     return base_rate, amount
-# pylint: enable=too-many-arguments,too-many-positional-arguments
+# pylint: enable=too-many-arguments,too-many-positional-arguments,too-many-locals
 
 
 def _other_rate_and_amount(income, score_late):
@@ -115,7 +115,7 @@ def _format_reasons(reasons):
 
 
 # R0913/R0917: 12-parameter signature is the public API consumed by the existing test suite.
-# R0914: local variables reflect distinct eligibility factors; extracting further would obscure logic.
+# R0914: locals reflect distinct eligibility factors; further extraction would obscure logic.
 # pylint: disable=too-many-arguments,too-many-positional-arguments,too-many-locals
 def evaluate(
         income, debt, tenure_months, age, savings_balance,
@@ -171,7 +171,7 @@ def evaluate(
 
     formatted = _format_reasons(reasons)
     return {"eligible": eligible, "amount": amount, "rate": rate, "reasons": formatted}
-# pylint: enable=too-many-arguments,too-many-positional-arguments
+# pylint: enable=too-many-arguments,too-many-positional-arguments,too-many-locals
 
 
 def classify_member(income, savings_balance):
