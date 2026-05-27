@@ -1,3 +1,5 @@
+"""Evaluation module for cooperativa members.(Loan Eligibility)"""
+
 from datetime import datetime
 
 
