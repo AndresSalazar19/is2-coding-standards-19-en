@@ -1,0 +1,31 @@
+name: Pylint
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pylint
+
+      - name: Get changed Python files
+        id: changed
+        run: |
+          FILES=$(git diff --name-only origin/main...HEAD -- '*.py' | tr '\n' ' ')
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+
+      - name: Run Pylint on changed files
+        if: steps.changed.outputs.files != ''
+        run: pylint --fail-under=10 ${{ steps.changed.outputs.files }}
