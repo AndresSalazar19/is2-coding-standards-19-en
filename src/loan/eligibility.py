@@ -115,8 +115,7 @@ def evaluate(
         rate = base_rate
         # Amount in cents to avoid floating-point drift in downstream services.
         amount = income * max_factor * score_late
-        if amount > DATA["max_amount_cap"]:
-            amount = DATA["max_amount_cap"]
+        amount = min(amount, DATA["max_amount_cap"])
         if amount < DATA["min_amount"]:
             amount = -1
 
