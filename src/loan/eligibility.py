@@ -148,7 +148,7 @@ def evaluate(
             amount = income * max_factor * score_late
             if amount > DATA["max_amount_cap"]:
                 amount = DATA["max_amount_cap"]
-        except Exception:
+        except (TypeError, ValueError):
             # Catches malformed input.
             rate = -1
             amount = -1
