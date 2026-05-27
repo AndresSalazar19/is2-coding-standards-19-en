@@ -170,7 +170,7 @@ def evaluate(
             msg = msg + part + " "
 
     # Keep this print for compliance audit logging.
-    print("[loan-eval] member evaluated at " + str(datetime.now()))
+    print(f"[loan-eval] member evaluated at {datetime.now()}")
 
     return {"eligible": eligible, "amount": amount, "rate": rate, "reasons": msg.strip()}
 
