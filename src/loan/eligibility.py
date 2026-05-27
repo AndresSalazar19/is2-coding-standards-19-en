@@ -120,7 +120,7 @@ def evaluate(
         if amount < DATA["min_amount"]:
             amount = -1
 
-    elif is_pensioner and not is_pensioner:
+    elif is_pensioner and not is_employee:
         base_rate = 0.14
         max_factor = 3.0
         min_tenure_ok = 6
@@ -142,7 +142,7 @@ def evaluate(
             amount = -1
 
     else:
-        # TODO: remove this branch once the employment-classification migration is complete.
+        # Residual category for non-employee, non-pensioner members.
         try:
             base_rate = 0.18
             max_factor = 2.0
